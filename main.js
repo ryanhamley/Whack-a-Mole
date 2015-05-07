@@ -98,6 +98,5 @@ var whackamole = (function () {
 })();
 
 window.addEventListener('DOMContentLoaded', function () {
-  console.log('whackamole', whackamole);
   whackamole.init();
 });
