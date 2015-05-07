@@ -2,10 +2,10 @@ var whackamole = (function () {
   var board = document.getElementById('board');
   var openings = [];
   var options = {
-    minimumMoles:  2 || minimum,
-    maximumMoles: 4 || maximum,
-    pause: 1000 || pause,
-    duration: 2750 || duration
+    minimumMoles:  2,
+    maximumMoles: 6,
+    pause: 1000,
+    duration: 2750
   };
 
   //shuffle implements the Fisher-Yates random shuffle algorithm. it shuffles the given array in place in O(n) time
@@ -72,7 +72,7 @@ var whackamole = (function () {
     //running the shuffle code in the set timeout allows for a pause between rounds
     setTimeout(function () {
       var shuffled = shuffle(openings);
-      var random = Math.floor(Math.random() * options.maximumMoles) + options.minimumMoles;
+      var random = Math.floor(Math.random() * (options.maximumMoles - options.minimumMoles +1)) + options.minimumMoles;
 
       //shuffle the mole elements and pick out the first n number of them to pop up the next round, where n is a random number
       for (var i = 0; i < random; i++) {
@@ -95,5 +95,6 @@ var whackamole = (function () {
 })();
 
 window.addEventListener('DOMContentLoaded', function () {
+  console.log('whackamole', whackamole);
   whackamole.init();
 });
