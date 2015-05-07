@@ -8,7 +8,7 @@ var whackamole = (function () {
     duration: 2750
   };
 
-  //shuffle implements the Fisher-Yates random shuffle algorithm. it shuffles the given array in place in O(n) time
+  //shuffle implements the Fisher-Yates random shuffle algorithm. it shuffles the given array in place
   //this implementation is illustrated by Mike Bostock at http://bost.ocks.org/mike/shuffle/
   function shuffle (array) {
     var m = array.length, t, i;
@@ -27,22 +27,23 @@ var whackamole = (function () {
     return array;
   }
 
-  //hasClass checks a DOM element to determine if it contains a class.
+  //hasClass checks a DOM element to determine if it has a specified class applied to it.
   function hasClass (element, cls) {
-    //without the spaces being added, the function will return true if cls is present within another class name
-    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+    //classList is a DOMTokenList so we have to use contains() to search it
+    return element.classList.contains(cls);
   }
 
   //setupBoard creates the board for the game by adding the hole elements and the elements which will become moles, as well as the score and event listener
   function setupBoard () {
+    var circle, mole;
     var score = 0;
 
     //16 gives us a nice 4 x 4 board
     for (var i = 0; i < 16; i++) {
-      var circle = document.createElement('div');
+      circle = document.createElement('div');
       circle.classList.add('circle');
 
-      var mole = document.createElement('div');
+      mole = document.createElement('div');
       //we need an array of all the moles to create random arrangements of them later
       openings.push(mole);
       circle.appendChild(mole);
@@ -57,6 +58,8 @@ var whackamole = (function () {
     //add the event listener to the board and then use event delegation to pick out hits on the moles and increase the player's score
     board.addEventListener('click', function(e) {
       if (hasClass(e.target, 'mole')) {
+        //if the target is clicked, we need to "knock it down" so that the player can't just keep clicking it and run up their score
+        e.target.classList.remove('mole');
         scoreSpan.innerHTML = ++score;
       }
     });

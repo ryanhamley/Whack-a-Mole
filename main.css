@@ -2,16 +2,16 @@ body {
     background-color: lightblue;
 }
 
-section {
-    width: 250px;
-    border: 5px solid black;
-    padding: 10px;
-    background-color: white;
-    text-align: center;
+h1, p, span {
+    font-family: Arial;
 }
 
-h1, #score {
-    font-family: Arial;
+section {
+    width: 250px;
+    padding: 10px;
+    border: 5px solid black;
+    background-color: white;
+    text-align: center;
 }
 
 .circle {
@@ -20,19 +20,19 @@ h1, #score {
     height: 50px;
     margin: 5px;
     border: 1px solid black;
+    border-radius: 50%;
     background-color: grey;
     box-shadow: inset 0 0 3px black;
-    border-radius: 50%;
 }
 
 .mole {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
+    margin: 5px auto;
+    border: 1px solid grey;
     border-radius: 50%;
     background-color: yellow;
-    position: relative;
-    top: 3px;
-    left: 3px;
-    border: 1px solid grey;
     box-shadow: 0 0 2px black;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
