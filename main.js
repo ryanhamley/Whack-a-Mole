@@ -67,7 +67,7 @@ var whackamole = (function () {
 
   //run creates the random moles for each round
   function run () {
-    //remove the event listeners from the last round to ensure a clean slate each round
+    //remove the mole classes from the last round to ensure a clean slate each round
     openings.forEach(function (opening) {
       opening.classList.remove('mole');
     });
